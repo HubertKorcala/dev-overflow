@@ -26,8 +26,8 @@ const LeftSidebar = () => {
               className={`${
                 isActive
                   ? `primary-gradient rounded-lg text-light-900`
-                  : `text-dark300_light900`
-              } flex items-center justify-start gap-4 bg-transparent
+                  : `text-dark300_light900 hover:bg-light-800 dark:hover:bg-dark-400`
+              } flex items-center justify-start gap-4 rounded-lg bg-transparent
                 p-4`}
             >
               <Image
@@ -49,7 +49,7 @@ const LeftSidebar = () => {
         })}
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="mt-3 flex flex-col gap-3">
         <SignedIn>
           <Link href="/sign-in">
             <Button className=" text-dark400_light900 invert-colors min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
