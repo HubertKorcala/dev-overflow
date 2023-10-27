@@ -1,4 +1,4 @@
-import { SidebarLink } from "@/types";
+import { SidebarLink } from "@/types/types";
 
 export const themes = [
   { value: "light", label: "Light", icon: "/assets/icons/sun.svg" },
