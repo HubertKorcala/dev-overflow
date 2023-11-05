@@ -7,7 +7,7 @@ export type TQuestion = {
   views: number;
   upvotes: Schema.Types.ObjectId[];
   downvotes: Schema.Types.ObjectId[];
-  author: Schema.Types.ObjectId[];
+  author: Schema.Types.ObjectId;
   answers: Schema.Types.ObjectId[];
   createdAt: Date;
 } & Document;
@@ -19,12 +19,11 @@ const QuestionSchema = new Schema<TQuestion>({
   views: { type: Number, default: 0 },
   upvotes: [{ type: Schema.Types.ObjectId, ref: "User" }],
   downvotes: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  author: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  author: { type: Schema.Types.ObjectId, ref: "User" },
   answers: [{ type: Schema.Types.ObjectId, ref: "Answer" }],
   createdAt: { type: Date, default: Date.now },
 });
 
-const Question =
-  models.Question || model<TQuestion>("Question", QuestionSchema);
+const Question = models.Question || model("Question", QuestionSchema);
 
 export default Question;
