@@ -18,12 +18,21 @@ import { Input } from "@/components/ui/input";
 import { QuestionSchema } from "@/lib/validations";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestion } from "@/lib/actions/question.action";
+import { useRouter, usePathname } from "next/navigation";
 
 const type: any = "create";
 
-const Question = () => {
+type Props = {
+  mongoUserId: string;
+};
+
+const Question = ({ mongoUserId }: Props) => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionSchema>>({
@@ -36,11 +45,23 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setIsSubmitting(true);
 
+    console.log(values.tags);
+
     try {
+      await createQuestion({
+        title: values.title,
+        content: values.explanation,
+        tags: values.tags,
+        author: JSON.parse(mongoUserId),
+        path: "",
+      });
+
+      router.push("/");
     } catch (error) {
+      window.alert(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -150,6 +171,8 @@ const Question = () => {
                     // @ts-ignore
                     (editorRef.current = editor)
                   }
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   initialValue="<p>This is the initial content of the editor.</p>"
                   init={{
                     height: 350,
@@ -205,9 +228,9 @@ const Question = () => {
                   />
                   {field.value.length > 0 && (
                     <div className="flex-start mt-2.5 gap-2.5">
-                      {field.value.map((tag, index) => (
+                      {field.value.map((tag) => (
                         <Badge
-                          key={index}
+                          key={tag}
                           className="subtle-medium background-light800_dark300 text-light400_light500 
                           flex-center gap-2 rounded-md border-none px-4 py-2 capitalize"
                         >
