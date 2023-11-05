@@ -30,6 +30,6 @@ const UserSchema = new Schema<TUser>({
   joinedAt: { type: Date, default: Date.now },
 });
 
-const User = models.User || model<TUser>("User", UserSchema);
+const User = models.User || model("User", UserSchema);
 
 export default User;
