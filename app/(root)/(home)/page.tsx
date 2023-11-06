@@ -5,46 +5,12 @@ import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/fliters";
+import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
-const questions = [
-  {
-    _id: "1",
-    title: "What is React?",
-    tags: [
-      { _id: "1", name: "react" },
-      { _id: "2", name: "javascript" },
-    ],
-    author: {
-      _id: "1",
-      name: "Klaudia Chołuj",
-      picture: "url_to_klaudia_picture",
-    },
-    upvotes: 10000,
-    views: 10000000,
-    answers: [],
-    createdAt: new Date("2023-10-04T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title: "What is Next.js?",
-    tags: [
-      { _id: "1", name: "react" },
-      { _id: "2", name: "javascript" },
-    ],
-    author: {
-      _id: "2",
-      name: "Hubert Korcala",
-      picture: "url_to_hubert_picture",
-    },
-    upvotes: 15,
-    views: 180,
-    answers: [],
-    createdAt: new Date("2020-01-04T12:00:00.000Z"),
-  },
-];
+export default async function Home() {
+  const result = await getQuestions({});
 
-export default function Home() {
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -76,8 +42,8 @@ export default function Home() {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => (
             <QuestionCard
               _id={question._id}
               title={question.title}
