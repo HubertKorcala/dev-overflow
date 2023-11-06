@@ -26,7 +26,7 @@ export async function getQuestions(params: GetQuestionsParams) {
   }
 }
 
-export async function createQuestion(params: Params) {
+export async function createQuestion(params: CreateQuestionParams) {
   try {
     connectToDatabase();
 
@@ -53,6 +53,8 @@ export async function createQuestion(params: Params) {
     await Question.findByIdAndUpdate(question._id, {
       $push: { tags: { $each: tagDocuments } },
     });
+
+    revalidatePath(path);
   } catch (error) {
     console.log("WRONG IN ACTION", error);
   }
