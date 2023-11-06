@@ -60,7 +60,7 @@ export async function deleteUser(params: DeleteUserParams) {
 
     const { clerkId } = params;
 
-    const user = await User.findByIdAndDelete({ clerkId });
+    const user = await User.findOneAndDelete({ clerkId });
 
     if (!user) {
       throw new Error("User nof found");
@@ -73,7 +73,7 @@ export async function deleteUser(params: DeleteUserParams) {
 
     await Question.deleteMany({ author: user._id });
 
-    const deletedUser = await User.findOneAndDelete(user._id);
+    const deletedUser = await User.findByIdAndDelete(user._id);
 
     return deletedUser;
   } catch (err) {
