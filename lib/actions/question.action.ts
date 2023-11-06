@@ -2,9 +2,29 @@
 
 import Question, { TQuestion } from "@/database/question.model";
 import { connectToDatabase } from "../mongoose";
-import Tag, { TagType } from "@/database/tag.model";
+import Tag from "@/database/tag.model";
+import { CreateQuestionParams, GetQuestionsParams } from "./shared.types";
+import User from "@/database/user.model";
+import { revalidatePath } from "next/cache";
 
-type Params = { title: string; content: string; tags: string[]; author; path };
+export async function getQuestions(params: GetQuestionsParams) {
+  try {
+    connectToDatabase();
+
+    const questions = await Question.find({})
+      .populate({
+        path: "tags",
+        model: Tag,
+      })
+      .populate({ path: "author", model: User })
+      .sort({ createdAt: -1 });
+
+    return { questions };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
 
 export async function createQuestion(params: Params) {
   try {
