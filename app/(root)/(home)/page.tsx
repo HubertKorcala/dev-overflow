@@ -1,5 +1,5 @@
 import HomeFilters from "@/components/home/HomeFilters";
-import QuestionCard from "@/components/home/QuestionCard";
+import QuestionCard from "@/components/cards/QuestionCard";
 import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
