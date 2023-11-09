@@ -4,6 +4,7 @@ import {
   downvoteQuestion,
   upvoteQuestion,
 } from "@/lib/actions/question.action";
+import { toggleSaveQuestion } from "@/lib/actions/user.action";
 import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -30,8 +31,15 @@ const Votes = ({
   hasdownVoted,
   hasSaved,
 }: Props) => {
-  const handleSave = () => {};
   const path = usePathname();
+
+  const handleSave = async () => {
+    await toggleSaveQuestion({
+      userId: JSON.parse(userId),
+      questionId: JSON.parse(itemId),
+      path,
+    });
+  };
 
   const handleVote = async (action: "upvote" | "downvote") => {
     if (!userId) {
@@ -78,6 +86,7 @@ const Votes = ({
       }
     }
   };
+
   return (
     <div className="flex gap-5">
       <div className="flex-center gap-2.5">
