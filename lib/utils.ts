@@ -63,8 +63,3 @@ export const getJoinedDate = (date: Date): string => {
 
   return joinedDate;
 };
-
-// Example usage:
-const currentDate = new Date();
-const formattedDate = getJoinedDate(currentDate);
-console.log(formattedDate);
