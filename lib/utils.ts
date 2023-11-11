@@ -52,3 +52,19 @@ export const formatAndDivideNumber = (number: number): string => {
     return `${number}`;
   }
 };
+
+export const getJoinedDate = (date: Date): string => {
+  // Get month and year from the Date object
+  const month = date.toLocaleString("en-US", { month: "long" });
+  const year = date.getFullYear();
+
+  // Format the joined date
+  const joinedDate = `${month} ${year}`;
+
+  return joinedDate;
+};
+
+// Example usage:
+const currentDate = new Date();
+const formattedDate = getJoinedDate(currentDate);
+console.log(formattedDate);
