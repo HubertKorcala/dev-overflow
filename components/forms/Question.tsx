@@ -51,8 +51,6 @@ const Question = ({ mongoUserId }: Props) => {
   async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setIsSubmitting(true);
 
-    console.log(values.tags);
-
     try {
       await createQuestion({
         title: values.title,
