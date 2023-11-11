@@ -7,7 +7,6 @@ import { URLProps } from "@/types/types";
 import React from "react";
 
 const Page = async ({ params, searchParams }: URLProps) => {
-  console.log(params.id);
   const result = await getQuestionsByTagId({
     tagId: params.id,
     page: 1,
