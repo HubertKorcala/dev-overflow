@@ -22,13 +22,13 @@ import { createQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
 
-const type: any = "create";
-
 type Props = {
+  type?: "edit";
   mongoUserId: string;
+  questionDetails?: string;
 };
 
-const Question = ({ mongoUserId }: Props) => {
+const Question = ({ type, mongoUserId, questionDetails }: Props) => {
   const { mode } = useTheme();
 
   const editorRef = useRef(null);
