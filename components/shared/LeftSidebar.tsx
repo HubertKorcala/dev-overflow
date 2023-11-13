@@ -93,7 +93,7 @@ const LeftSidebar = () => {
                 height={20}
                 className="invert-colors lg:hidden"
               />
-              <span className=" max-lg:hidden">Log Out</span>
+              <span className=" max-lg:hidden">Sign up</span>
             </Button>
           </Link>
         </SignedOut>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use server";
 import { FilterQuery } from "mongoose";
 import User, { TUser } from "@/database/user.model";

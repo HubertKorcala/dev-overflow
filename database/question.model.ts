@@ -9,6 +9,8 @@ export type TQuestion = {
   downvotes: Schema.Types.ObjectId[];
   author: Schema.Types.ObjectId;
   answers: Schema.Types.ObjectId[];
+  createdAt: Date;
+  updatedAt: Date;
 } & Document;
 
 const QuestionSchema = new Schema<TQuestion>(
