@@ -41,7 +41,8 @@ const Page = async ({ params, searchParams }: URLProps) => {
               {userInfo.user.portfolioWebsite && (
                 <ProfileLink
                   imgUrl="/assets/icons/link.svg"
-                  title={userInfo.user.portfolioWebsite}
+                  title="Portfolio"
+                  href={userInfo.user.portfolioWebsite}
                 />
               )}
 
@@ -63,8 +64,6 @@ const Page = async ({ params, searchParams }: URLProps) => {
                 {userInfo.user.bio}
               </p>
             )}
-
-            {userInfo.user.bio && <p>{userInfo.user.bio}</p>}
           </div>
         </div>
 
