@@ -3,17 +3,13 @@ import React from "react";
 import Image from "next/image";
 import RenderTag from "./RenderTag";
 import { getHotQuestions } from "@/lib/actions/question.action";
+import { getTopPopularTags } from "@/lib/actions/tag.action";
 
+const RightSidebar = async () => {
   const hotQuestions = await getHotQuestions();
 
+  const popularTags = await getTopPopularTags();
 
-  const popularTags = [
-    { _id: "1", name: "javascript", totalQuestions: 5 },
-    { _id: "2", name: "react", totalQuestions: 5 },
-    { _id: "3", name: "Next.js", totalQuestions: 5 },
-    { _id: "4", name: "Node.js", totalQuestions: 5 },
-    { _id: "5", name: "Python", totalQuestions: 5 },
-  ];
   return (
     <section className=" custom-scrollbar light-border background-light900_dark200 sticky right-0 top-0 flex h-screen w-[350px] flex-col gap-6  overflow-y-auto border-l p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden">
       <div className="">
@@ -47,7 +43,7 @@ import { getHotQuestions } from "@/lib/actions/question.action";
               key={tag._id}
               _id={tag._id}
               name={tag.name}
-              totalQuestions={tag.totalQuestions}
+              totalQuestions={tag.numberOfQuestions}
               showCount
             />
           ))}
