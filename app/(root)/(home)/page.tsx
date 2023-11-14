@@ -7,9 +7,12 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/fliters";
 import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
+import { SearchParamsProps } from "@/types/types";
 
-export default async function Home() {
-  const result = await getQuestions({});
+export default async function Home({ searchParams }: SearchParamsProps) {
+  const result = await getQuestions({
+    searchQuery: searchParams.q,
+  });
 
   return (
     <>
