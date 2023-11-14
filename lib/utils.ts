@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from "clsx";
-import QueryString from "qs";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 
