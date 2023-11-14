@@ -2,15 +2,10 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import RenderTag from "./RenderTag";
+import { getHotQuestions } from "@/lib/actions/question.action";
 
-const RightSidebar = () => {
-  const hotQuestions = [
-    { _id: "1", title: "How do I use express as a custom server in NextJS" },
-    { _id: "2", title: "How do I use express as a custom server in NextJS" },
-    { _id: "3", title: "How do I use express as a custom server in NextJS" },
-    { _id: "4", title: "How do I use express as a custom server in NextJS" },
-    { _id: "5", title: "How do I use express as a custom server in NextJS" },
-  ];
+  const hotQuestions = await getHotQuestions();
+
 
   const popularTags = [
     { _id: "1", name: "javascript", totalQuestions: 5 },
@@ -27,7 +22,7 @@ const RightSidebar = () => {
           {hotQuestions.map((question) => (
             <Link
               key={question._id}
-              href={`/qustions/${question._id}`}
+              href={`/question/${question._id}`}
               className="flex cursor-pointer items-center justify-between gap-7 rounded-lg p-3 hover:bg-light-800 dark:hover:bg-dark-400"
             >
               <p className="text-dark500_light700 body-medium">
