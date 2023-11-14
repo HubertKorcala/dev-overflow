@@ -39,7 +39,15 @@ export const getAllTags = async (params: GetAllTagsParams) => {
   try {
     connectToDatabase();
 
-    const tags: TagType[] = await Tag.find({});
+    const { searchQuery } = params;
+
+    const query: FilterQuery<typeof Tag> = {};
+
+    if (searchQuery) {
+      query.$or = [{ name: { $regex: new RegExp(searchQuery, "i") } }];
+    }
+
+    const tags: TagType[] = await Tag.find(query);
 
     return { tags };
   } catch (error) {
@@ -54,7 +62,7 @@ export const getQuestionsByTagId = async (
   try {
     connectToDatabase();
 
-    const { tagId, page = 1, pageSize = 10, searchQuery } = params;
+    const { tagId, searchQuery } = params;
 
     const tagFilter: FilterQuery<TagType> = { _id: tagId };
 
