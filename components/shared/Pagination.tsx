@@ -28,6 +28,8 @@ const Pagination = ({
     router.push(newUrl);
   };
 
+  if (!isNext && pageNumber === 1) return null;
+
   return (
     <div className="flex-center w-full gap-2">
       <Button
