@@ -9,6 +9,7 @@ import { SearchParamsProps } from "@/types/types";
 const page = async ({ searchParams }: SearchParamsProps) => {
   const result = await getAllTags({
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
   });
 
   return (
