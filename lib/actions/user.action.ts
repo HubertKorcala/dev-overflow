@@ -229,7 +229,7 @@ export const getSavedQuestions = async (params: GetSavedQuestionsParams) => {
 
     const isNext = user.saved.length > pageSize;
 
-    const getSavedQuestions = user.saved;
+    const getSavedQuestions = isNext ? user.saved.slice(0, -1) : user.saved;
 
     return { questions: getSavedQuestions, isNext };
   } catch (err) {
