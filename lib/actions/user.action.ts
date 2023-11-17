@@ -246,6 +246,10 @@ export const getUserInfo = async (params: GetUserByIdParams) => {
 
     const user = await User.findOne({ clerkId: userId });
 
+    if (!user) {
+      throw new Error("User not found");
+    }
+
     const totalQuestions = await Question.countDocuments({ author: user._id });
     const totalAnswers = await Answer.countDocuments({ author: user._id });
 
