@@ -1,4 +1,5 @@
 import { formatAndDivideNumber } from "@/lib/utils";
+import { BadgeCounts } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
@@ -28,9 +29,11 @@ items-center justify-start gap-4 rounded-md border p-6 shadow-light-300 dark:sha
 const Stats = ({
   totalQuestions,
   totalAnswers,
+  badges,
 }: {
   totalQuestions: number;
   totalAnswers: number;
+  badges: BadgeCounts;
 }) => {
   return (
     <div className="mt-10">
@@ -57,17 +60,17 @@ const Stats = ({
 
         <StatsCard
           imgUrl="/assets/icons/gold-medal.svg"
-          value={0}
+          value={badges.GOLD}
           title="Gold Badges"
         />
         <StatsCard
           imgUrl="/assets/icons/silver-medal.svg"
-          value={0}
+          value={badges.SILVER}
           title="Silver Badges"
         />
         <StatsCard
           imgUrl="/assets/icons/bronze-medal.svg"
-          value={0}
+          value={badges.BRONZE}
           title="Bronze Badges"
         />
       </div>
