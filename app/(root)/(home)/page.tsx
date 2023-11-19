@@ -9,6 +9,7 @@ import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 import { SearchParamsProps } from "@/types/types";
 import Pagination from "@/components/shared/Pagination";
+import Loading from "./loading";
 
 export default async function Home({ searchParams }: SearchParamsProps) {
   const result = await getQuestions({
@@ -16,6 +17,10 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     filter: searchParams.filter,
     page: searchParams.page ? +searchParams.page : 1,
   });
+
+  const isLoading = true;
+
+  if (isLoading) return <Loading />;
 
   return (
     <>
