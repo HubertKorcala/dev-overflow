@@ -5,6 +5,22 @@ import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { getQuestionsByTagId } from "@/lib/actions/tag.action";
 import { URLProps } from "@/types/types";
 import React from "react";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: URLProps): Promise<Metadata> {
+  const result = await getQuestionsByTagId({
+    tagId: params.id,
+    searchQuery: searchParams.q,
+    page: searchParams?.page ? +searchParams.page : 1,
+  });
+
+  return {
+    title: `${result.tagTitle} | DevFlow`,
+  };
+}
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const result = await getQuestionsByTagId({

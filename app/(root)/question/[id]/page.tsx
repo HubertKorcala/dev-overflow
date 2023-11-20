@@ -10,8 +10,19 @@ import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { URLProps } from "@/types/types";
 import { auth } from "@clerk/nextjs";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export async function generateMetadata({
+  params,
+}: URLProps): Promise<Metadata> {
+  const result = await getQuestionById({ questionId: params.id });
+
+  return {
+    title: `${result.title} | DevFlow`,
+  };
+}
 
 const page = async ({ params, searchParams }: URLProps) => {
   const result = await getQuestionById({ questionId: params.id });
