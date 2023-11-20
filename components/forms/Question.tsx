@@ -21,6 +21,7 @@ import Image from "next/image";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
+import { toast } from "../ui/use-toast";
 
 type Props = {
   type?: "edit";
@@ -63,6 +64,10 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
           path: pathname,
         });
 
+        toast({
+          title: "Question Updated",
+        });
+
         router.push(`/question/${parsedQuestionDetails._id}`);
       } else {
         await createQuestion({
@@ -73,10 +78,18 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
           path: pathname,
         });
 
+        toast({
+          title: "Question Created",
+        });
+
         router.push("/");
       }
     } catch (error) {
-      window.alert(error);
+      toast({
+        title: "Sorry, something went wrong",
+        variant: "destructive",
+      });
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }

@@ -18,6 +18,7 @@ import { useState } from "react";
 import { ProfileSchema } from "@/lib/validations";
 import { usePathname, useRouter } from "next/navigation";
 import { updateUser } from "@/lib/actions/user.action";
+import { toast } from "../ui/use-toast";
 
 const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
   const parsedUser = JSON.parse(user);
@@ -54,9 +55,17 @@ const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
         path: pathname,
       });
 
+      toast({
+        title: "Profile Updated",
+      });
+
       router.back();
     } catch (error) {
-      console.log(error);
+      toast({
+        title: "Sorry, something went wrong",
+        variant: "destructive",
+      });
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
