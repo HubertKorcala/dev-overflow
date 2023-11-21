@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import Image from "next/image";
-import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
+import { SignedOut, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
 const LeftSidebar = () => {
@@ -57,20 +57,6 @@ const LeftSidebar = () => {
       </div>
 
       <div className="mt-3 flex flex-col gap-3">
-        <SignedIn>
-          <Link href="/sign-in">
-            <Button className=" text-dark400_light900 invert-colors min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-              <Image
-                src="/assets/icons/sign-up.svg"
-                alt="logout"
-                width={20}
-                height={20}
-              />
-              <span className="max-lg:hidden">Logout</span>
-            </Button>
-          </Link>
-        </SignedIn>
-
         <SignedOut>
           <Link href="/sign-in">
             <Button className="small-medium text-dark400_light900 btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">

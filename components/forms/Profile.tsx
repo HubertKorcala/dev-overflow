@@ -81,13 +81,13 @@ const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
           name="name"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>
+              <FormLabel className="text-dark300_light700 paragraph-semibold">
                 Name <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Your name"
-                  className="no-focus paragraph-regular light-border-2 background-light700_dark300 
+                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 
                   text-dark300_light700 min-h-[56px] border"
                   {...field}
                 />
@@ -101,13 +101,13 @@ const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
           name="username"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>
+              <FormLabel className="text-dark300_light700 paragraph-semibold">
                 Username <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Your username"
-                  className="no-focus paragraph-regular light-border-2 background-light700_dark300 
+                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 
                   text-dark300_light700 min-h-[56px] border"
                   {...field}
                 />
@@ -121,11 +121,13 @@ const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
           name="portfolioWebsite"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>Portfolio Link</FormLabel>
+              <FormLabel className="text-dark300_light700 paragraph-semibold">
+                Portfolio Link
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Your portfolio link"
-                  className="no-focus paragraph-regular light-border-2 background-light700_dark300 
+                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 
                   text-dark300_light700 min-h-[56px] border"
                   {...field}
                 />
@@ -139,11 +141,13 @@ const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
           name="location"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>Location</FormLabel>
+              <FormLabel className="text-dark300_light700 paragraph-semibold">
+                Location
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Where are you from?"
-                  className="no-focus paragraph-regular light-border-2 background-light700_dark300 
+                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 
                   text-dark300_light700 min-h-[56px] border"
                   {...field}
                 />
@@ -157,11 +161,13 @@ const Profile = ({ clerkId, user }: { clerkId: string; user: string }) => {
           name="bio"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>Bio</FormLabel>
+              <FormLabel className="text-dark300_light700 paragraph-semibold">
+                Bio
+              </FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="What's special about you?"
-                  className="no-focus paragraph-regular light-border-2 background-light700_dark300 
+                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 
                   text-dark300_light700 min-h-[56px] border"
                   {...field}
                 />
