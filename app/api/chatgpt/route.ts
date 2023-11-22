@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+export const maxDuration = 300;
 
 export const POST = async (request: Request) => {
   const { question } = await request.json();
