@@ -18,18 +18,27 @@ type Props = {
   }[];
   otherClasses?: string;
   containerClasses?: string;
+  type?: "location";
 };
 
-const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
+const Filter = ({ filters, otherClasses, containerClasses, type }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  let paramFilter;
+  let key: string;
 
-  const paramFilter = searchParams.get("filter");
+  if (type === "location") {
+    paramFilter = searchParams.get("location");
+    key = "location";
+  } else {
+    paramFilter = searchParams.get("filter");
+    key = "filter";
+  }
 
   const handleUpdateParams = (value: string) => {
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
-      key: "filter",
+      key,
       value,
     });
 
@@ -46,16 +55,20 @@ const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
           className={`body-regular light-border background-light800_dark300 text-dark500_light700 border px-5 py-2.5 ${otherClasses}`}
         >
           <div className="line-clamp-1 flex-1 text-left">
-            <SelectValue placeholder="Select a Filter" />
+            <SelectValue
+              placeholder={`${
+                type === "location" ? "Select Location" : "Select a Filter"
+              }`}
+            />
           </div>
         </SelectTrigger>
-        <SelectContent className="background-light800_dark300 text-dark500_light700">
+        <SelectContent className="background-light800_dark300 text-dark500_light700 small-regular max-h-[300px] border-none">
           <SelectGroup>
             {filters.map((filter) => (
               <SelectItem
                 key={filter.value}
                 value={filter.value}
-                className="hover:background-light700_dark400"
+                className="hover:background-light700_dark400 cursor-pointer"
               >
                 {filter.name}
               </SelectItem>
