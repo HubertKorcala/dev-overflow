@@ -54,13 +54,13 @@ export default async function Page({ searchParams }: SearchParamsProps) {
   const parsedData = await result.json();
   const data: Job[] = parsedData.data;
 
-  const getFlag = (country: string): string => {
-    const data = countriesData.find(
-      (countryData) => countryData.cca2 === country
-    );
+  const getCountryData = (country: string) => {
+    return countriesData.find((countryData) => countryData.cca2 === country);
+  };
 
-    const flag = data?.flags?.png || "";
-    return flag;
+  const getFlag = (country: string): string => {
+    const data = getCountryData(country);
+    return data?.flags?.png ?? "";
   };
 
   return (
@@ -85,7 +85,7 @@ export default async function Page({ searchParams }: SearchParamsProps) {
       <p></p>
       {
         <div className="mt-10 flex w-full flex-col gap-6">
-          {data.length > 0 ? (
+          {data?.length > 0 ? (
             data.map((item) => (
               <JobCard
                 key={item.job_id}
