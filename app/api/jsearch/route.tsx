@@ -3,17 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
 
-  let query = searchParams?.get("query")
-    ? searchParams.get("query")
-    : "next.js";
-  const page = searchParams?.get("page") ? searchParams.get("page") : 1;
-  let country = searchParams?.get("country") ? searchParams.get("country") : "";
-  if (country) {
-    country = encodeURIComponent(` in ${country}`);
-  }
-  if (!query) {
-    query = "next.js";
-  }
+  const query = searchParams?.get("query") ?? "next.js";
+  const page = searchParams?.get("page") ?? 1;
+  const country = searchParams?.get("country")
+    ? encodeURIComponent(` in ${searchParams.get("country")}`)
+    : "";
 
   const encodedQuery = encodeURIComponent(query);
 
