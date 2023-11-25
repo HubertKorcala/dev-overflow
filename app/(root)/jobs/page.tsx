@@ -40,17 +40,11 @@ export default async function Page({ searchParams }: SearchParamsProps) {
   const parsedCountriesResult = await countriesResult.json();
   const countriesData: Country[] = parsedCountriesResult.data;
 
-  const query = searchParams.q || "";
-  const country = searchParams.location || "";
-  const page = searchParams.page || 1;
+  const { q: query = "", location: country = "", page = 1 } = searchParams;
 
-  let countryCode = "";
+  const countryCode = country ? `&country=${encodeURIComponent(country)}` : "";
 
-  if (country) {
-    countryCode = `&country=${encodeURIComponent(country)}`;
-  }
-
-  const encodedQuery = encodeURIComponent(query!);
+  const encodedQuery = encodeURIComponent(query);
 
   const isNext = +page >= 1 && +page < 100;
 
@@ -115,13 +109,14 @@ export default async function Page({ searchParams }: SearchParamsProps) {
           )}
         </div>
       }
-
-      <div className="mt-10">
-        <Pagination
-          pageNumber={searchParams?.page ? +searchParams.page : 1}
-          isNext={isNext}
-        />
-      </div>
+      {data.length > 0 && (
+        <div className="mt-10">
+          <Pagination
+            pageNumber={searchParams?.page ? +searchParams.page : 1}
+            isNext={isNext}
+          />
+        </div>
+      )}
     </>
   );
 }
